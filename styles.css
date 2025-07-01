@@ -92,6 +92,10 @@ a:hover {
   font-weight: bold;
 }
 
+strong {
+  color: #FF7F50;
+  font-weight: bold;
+}
 
 pre, code {
   font-family: 'Courier New', Courier, monospace; 

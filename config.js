@@ -4,6 +4,11 @@ window.PorfolioConfig = {
   jobDescription: 'On a journey to learn and share insights within the cybersecurity community.',
   article: [
     {
+      name: 'SOC Analyst Beginner Roadmap - With Honest Tips and Advice',
+      link: 'articles/soc_analyst_beginner_roadmap.html',
+      description: 'Breaking into cybersecurity, specifically Security Operations Center (SOC) roles...'
+    },
+    {
       name: 'Email Generator Tool',
       link: 'articles/email_generator_tool.html',
       description: 'I wanted to share a tool that I’ve created and really enjoy using. It’s not highly technical,...'
