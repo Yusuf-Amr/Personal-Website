@@ -4,19 +4,14 @@ window.PorfolioConfig = {
   jobDescription: 'On a journey to learn and share insights within the cybersecurity community.',
   article: [
     {
-      name: 'SOC Analyst Beginner Roadmap - With Honest Tips and Advice',
-      link: 'articles/soc_analyst_beginner_roadmap.html',
-      description: 'Breaking into cybersecurity, specifically Security Operations Center (SOC) roles...'
+      name: 'Email Sender Validation Tool',
+      link: 'articles/email_sender_validation_tool.html',
+      description: 'Excited to share a tool I built to simplify part of the email analysis for security analysts! This tool...'
     },
     {
       name: 'Email Generator Tool',
       link: 'articles/email_generator_tool.html',
       description: 'I wanted to share a tool that I’ve created and really enjoy using. It’s not highly technical,...'
-    },
-    {
-      name: 'Email Sender Validation Tool',
-      link: 'articles/email_sender_validation_tool.html',
-      description: 'Excited to share a tool I built to simplify part of the email analysis for security analysts! This tool...'
     },
     {
       name: 'AWS Breach Hunting: Investigating Security Incidents in the Cloud with AWS CloudTrail (Pwned Labs)',
@@ -47,6 +42,11 @@ window.PorfolioConfig = {
       name: 'Private Local AI',
       link: 'articles/private_ai.html',
       description: 'I’ve often been concerned about the accidental leakage of sensitive information through AI tools...'
+    },  
+    {
+      name: 'SOC Analyst Beginner Roadmap - With Honest Tips and Advice',
+      link: 'articles/soc_analyst_beginner_roadmap.html',
+      description: 'Breaking into cybersecurity, specifically Security Operations Center (SOC) roles...'
     }
   ],
   contacts: {
