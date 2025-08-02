@@ -8,7 +8,7 @@ body {
 }
 
 h1 {
-  color: #00BFFF;
+  color: #00FF00;
   font-size: 2rem;
   margin-bottom: 20px;
   margin-top: 40px;
@@ -75,7 +75,7 @@ a:hover {
   position: absolute;      
   top: 10px;                
   left: 10px;              
-  color: #00BFFF;          
+  color: #00FF00;          
   background: none;        
   border: none;            
   font-size: 20px;        
@@ -88,7 +88,7 @@ a:hover {
 }
 
 .highlight {
-  color: #00BFFF; 
+  color: #00FF00; 
   font-weight: bold;
 }
 
