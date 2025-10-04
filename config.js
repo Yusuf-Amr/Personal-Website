@@ -4,7 +4,7 @@ window.PorfolioConfig = {
   jobDescription: 'On a journey to learn and share insights within the cybersecurity community.',
   article: [
     {
-      name: 'My Contribution to the Nuclei Vulnerability Scanner: SMBv3 RCE (CVE-2020-0796)',
+      name: 'My Contribution to the Nuclei Vulnerability Scanner: Microsoft SMBv3 RCE (CVE-2020-0796)',
       link: 'articles/nuclei_contribution_CVE-2020-0796.html',
       description: 'Happy to share my recent contribution to Nuclei, the vulnerability scanner from ProjectDiscovery, by creating vulnerability detection for Microsoft SMBv3 - Remote Code Execution (CVE-2020-0796)...'
     },
