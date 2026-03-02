@@ -16,8 +16,13 @@
   
   <style>
     #article-wrapper {
+      padding-top: 5rem;
       opacity: 0;
       transition: opacity 0.2s ease;
+    }
+    
+    .article-header {
+      margin-top: 1rem;
     }
     
     #article-wrapper.loaded {
@@ -62,6 +67,46 @@
     
     @keyframes spin {
       to { transform: rotate(360deg); }
+    }
+    
+    /* Balanced image size for desktop */
+    .article-content img {
+      max-width: 100%;
+      height: auto;
+      max-height: 550px;
+      width: auto;
+      margin: 2rem auto;
+      display: block;
+      object-fit: contain;
+      border-radius: 8px;
+    }
+
+    /* For very large screens */
+    @media (min-width: 1400px) {
+      .article-content img {
+        max-height: 600px;
+      }
+    }
+
+    /* Keep mobile view as is (full size) */
+    @media (max-width: 768px) {
+      .article-content img {
+        max-height: none;
+        width: 100%;
+      }
+      
+      #article-wrapper {
+        padding-top: 3rem;
+      }
+      
+      .article-header {
+        margin-top: 0.5rem;
+      }
+      
+      .back-button {
+        top: 0.75rem;
+        left: 0.75rem;
+      }
     }
   </style>
 </head>
