@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>/Email Sender Validation Tool</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="./../styles.css">
+  <link href="https://cdn.jsdelivr.net/npm/@mdi/font@4.x/css/materialdesignicons.min.css" rel="stylesheet">
+  
+  <style>
+    #article-wrapper {
+      opacity: 0;
+      transition: opacity 0.2s ease;
+    }
+    
+    #article-wrapper.loaded {
+      opacity: 1;
+    }
+    
+    #page-loader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--bg, #0a0a0a);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      transition: opacity 0.3s ease;
+    }
+    
+    #page-loader.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+    
+    .loader-spinner {
+      width: 40px;
+      height: 40px;
+      border: 3px solid var(--border, #333);
+      border-top-color: var(--accent, #ff6b6b);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin-bottom: 1rem;
+    }
+    
+    .loader-text {
+      color: var(--text-muted, #888);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.9rem;
+    }
+    
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+  <div id="page-loader">
+    <div class="loader-spinner"></div>
+    <div class="loader-text">Loading article...</div>
+  </div>
+  
+  <div class="reading-progress" id="reading-progress"></div>
+  
+  <div id="article-wrapper">
+    <a href="https://yusufamr.com/" class="back-button">
+      <span class="mdi mdi-home"></span>
+      <span>Home</span>
+    </a>
+
+    <main class="container">
+      <section>
+        <header class="article-header">
+          <h1 class="article-title">/Email Sender Validation Tool</h1>
+          <div class="article-meta">
+            <span class="article-meta-item">
+              <span class="mdi mdi-calendar"></span>
+              11 July 2024
+            </span>
+            <span class="article-meta-item">
+              <span class="mdi mdi-account"></span>
+              Yusuf Amr
+            </span>
+          </div>
+        </header>
+
+        <div class="article-content">
+          <img src="./assets/email_sender_validation_tool/email-sender-validationm.png" alt="Email Sender Validation Tool" >
+          Excited to share a tool I built to simplify part of the email analysis for security analysts! This tool facilitates the validation of email senders and enhances the identification of potential phishing attempts, helping you to make informed decisions regarding email legitimacy.
+
+          This Python script provides a set of tools for analyzing email-related data including SPF, DMARC, VirusTotal Domain and IP reputation, WHOIS information, and more. It's designed to assist SOC (Security Operations Center) analysts in quickly assessing the legitimacy and potential risks associated with email communications.
+          
+          Explore it on GitHub: <a href="https://github.com/Yusuf-Amr/email-sender-validation" target="_blank">https://github.com/Yusuf-Amr/email-sender-validation</a>
+
+          <span class="highlight">Features</span>
+          
+          <ul>
+            <li><strong>SPF Check:</strong> Validates the Sender Policy Framework (SPF) records for a domain against an IP and sender email address.</li>
+            <li><strong>VirusTotal Check:</strong> Retrieves domain-related and IP data from VirusTotal API including last DNS records, categories, and security scan results.</li>
+            <li><strong>WHOIS Lookup:</strong> Fetches WHOIS information for a domain to ascertain ownership and registration details.</li>
+            <li><strong>DMARC Check (Optional):</strong> Retrieves DMARC records for a domain.</li>
+          </ul>
+          
+          <span class="highlight">Usage VirusTotal API Key Setup:</span>
+          
+          <ul>
+            <li>When you run the script for the first time, it will prompt you to enter your VirusTotal API key.</li>
+            <li>The API key will be automatically saved in api_key.txt and will not prompt for it again in future runs.</li>
+            <li>To change the API key, update it directly in api_key.txt.</li>
+          </ul>
+          
+          <span class="highlight">Requirements</span>
+          
+          <ul>
+            <li>Python 3.x</li>
+            <li>Libraries:
+              <ul>
+                <li>colorama</li>
+                <li>requests</li>
+                <li>whois</li>
+                <li>dns.resolver</li>
+                <li>spf</li>
+              </ul>
+            </li>
+          </ul>
+          
+          <span class="highlight">Installation</span>
+          
+          <p>Clone the repository:</p>
+          
+          <pre><code>git clone https://github.com/Yusuf-Amr/email-sender-validation.git</code></pre>
+          
+          <p>Install dependencies:</p>
+          
+          <pre><code>pip install -r requirements.txt</code></pre>
+          
+          <p>Run the script:</p>
+          
+          <pre><code>python main.py</code></pre>
+        
+          <span class="highlight">Demo</span>  
+          <span class="highlight">Real World Phishing Example:</span>
+          
+          Source: <a href="https://x.com/phishunt_io/status/1780834586106167631" target="_blank">https://x.com/phishunt_io/status/1780834586106167631</a>
+
+          
+          <p>Below is a real world scenario demonstrating how the tool can identify a phishing attempt:</p>
+          
+          <p>The sender email address appears to be from "bpg-microsoft(.)com" attempting to spoof the legitimate Microsoft domain (microsoft.com). The sender IP address is 217.160.14.242.</p>
+
+          <img src="./assets/email_sender_validation_tool/phishing-example.png" alt="Phishing Example" >
+          <img src="./assets/email_sender_validation_tool/1.png" alt="Analysis 1" >
+          <img src="./assets/email_sender_validation_tool/2.png" alt="Analysis 2" >  
+          <img src="./assets/email_sender_validation_tool/3.png" alt="Analysis 3" >
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    window.addEventListener('load', function() {
+      setTimeout(function() {
+        document.getElementById('page-loader').classList.add('hidden');
+        document.getElementById('article-wrapper').classList.add('loaded');
+      }, 100);
+    });
+
+    window.addEventListener('scroll', function() {
+      const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      document.getElementById('reading-progress').style.width = scrolled + '%';
+    });
+  </script>
+</body>
+</html>

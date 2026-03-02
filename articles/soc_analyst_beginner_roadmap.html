@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>/SOC Analyst Beginner Roadmap - With Honest Tips and Advice</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="./../styles.css">
+  <link href="https://cdn.jsdelivr.net/npm/@mdi/font@4.x/css/materialdesignicons.min.css" rel="stylesheet">
+  
+  <style>
+    #article-wrapper {
+      opacity: 0;
+      transition: opacity 0.2s ease;
+    }
+    
+    #article-wrapper.loaded {
+      opacity: 1;
+    }
+    
+    #page-loader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--bg, #0a0a0a);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      transition: opacity 0.3s ease;
+    }
+    
+    #page-loader.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+    
+    .loader-spinner {
+      width: 40px;
+      height: 40px;
+      border: 3px solid var(--border, #333);
+      border-top-color: var(--accent, #ff6b6b);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin-bottom: 1rem;
+    }
+    
+    .loader-text {
+      color: var(--text-muted, #888);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.9rem;
+    }
+    
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+  <div id="page-loader">
+    <div class="loader-spinner"></div>
+    <div class="loader-text">Loading article...</div>
+  </div>
+  
+  <div class="reading-progress" id="reading-progress"></div>
+  
+  <div id="article-wrapper">
+    <a href="https://yusufamr.com/" class="back-button">
+      <span class="mdi mdi-home"></span>
+      <span>Home</span>
+    </a>
+
+    <main class="container">
+      <section>
+        <header class="article-header">
+          <h1 class="article-title">/SOC Analyst Beginner Roadmap - With Honest Tips and Advice</h1>
+          <div class="article-meta">
+            <span class="article-meta-item">
+              <span class="mdi mdi-calendar"></span>
+              1 July 2025
+            </span>
+            <span class="article-meta-item">
+              <span class="mdi mdi-account"></span>
+              Yusuf Amr
+            </span>
+          </div>
+        </header>
+
+        <div class="article-content">
+          <img src="./assets/soc_analyst_roadmap/soc_analyst_roadmap.png" alt="SOC Analyst Roadmap">
+          Breaking into cybersecurity, specifically Security Operations Center (SOC) roles, can feel
+          overwhelming at first. But with structure, discipline, and the right learning path, you can
+          build the necessary skills.
+
+          Here's a practical roadmap to help you prepare for a SOC Analyst role:
+          
+          <span class="highlight">1. English & Business Communication</span>
+          <strong>Clear communication is essential. You should be able to:</strong>
+          <ul>
+            <li>Communicate effectively in English, it's not optional, it's a must. You'll rely on it to read articles, understand technical books, and access the majority of learning resources, which are primarily in English. It's also the common language when working with colleagues from different cultures.</li>
+            <li>Write professional emails</li>
+            <li>Document incidents and technical details clearly</li>
+          </ul>
+
+          <span class="highlight">2. Network Fundamentals (CCNA Basics)</span>
+          <strong>Understand:</strong>
+          <ul>
+            <li>IP addresses, subnets, routing</li>
+            <li>TCP/IP and common protocols</li>
+            <li>Network devices like routers, switches, firewalls</li>
+          </ul>
+
+          <span class="highlight">3. Linux Essentials</span>
+          <strong>Learn basic commands:</strong>
+          <ul>
+            <li>ls, cd, grep, cat ... etc</li>
+            <li>File permissions</li>
+          </ul>
+
+          <span class="highlight">4. Programming Foundations</span>
+          <strong>No need to be an expert coder, but logical thinking is key:</strong>
+          <ul>
+            <li>Variables, loops, conditions</li>
+            <li>Basic Python or Bash scripting</li>
+            <li>Ability to read and understand code</li>
+          </ul>
+
+          <span class="highlight">5. SOC L1 Course by TCM Security</span>
+          <ul>
+            <li>The full course is available on their website (Paid)</li>
+            <li>Part of this course is available for free on YouTube</li>
+          </ul>
+
+          <span class="highlight">6. Practical Platforms: TryHackMe & LetsDefend</span>
+          <ul>
+            <li>TryHackMe SOC Tier 1 Track</li>
+            <li>LetsDefend SOC Analyst Track</li>
+          </ul>
+
+          <span class="highlight">7. Splunk - Boss of the SOC Challenges</span>
+          <strong>Learn log analysis and threat detection with:</strong>
+          <ul>
+            <li>Splunk BOSS v1, v2, v3 challenges</li>
+          </ul>
+
+          <span class="highlight">8. Optional Courses</span>
+          <ul>
+            <li>CEH (Certified Ethical Hacker)</li>
+            <li>Ethical Hacking Essentials by The Cyber Mentor (YouTube)</li>
+          </ul>
+
+          <span class="highlight">9. Soft Skills Matter (with Real Examples)</span>
+          <strong>In cybersecurity, technical skills open the door, but soft skills keep you in and help you grow. Here are real-world examples:</strong>
+
+          <ul>
+            <li><strong>Professionalism in Personal Interactions:</strong> Example: You made a mistake in your incident report or missed a step during an investigation. Your senior points it out during a meeting. Stay professional, don't argue or take it personally. Listen carefully, accept the feedback, and show you're willing to improve. The way you handle criticism and interact with your team builds trust and respect far more than pretending to know everything.</li>
+            <li><strong>Effective Communication (Written & Verbal):</strong> Example: You discovered suspicious activity. Can you clearly explain it to your technical team? Can you explain it in simple terms to a non-technical manager? Clear communication avoids misunderstandings and panic.</li>
+            <li><strong>Teamwork & Collaboration (Across Teams & with Clients):</strong> Example: You're part of an incident response. You must coordinate with your SOC team, system administrators, and sometimes even external clients. You cannot work in isolation.</li>
+            <li><strong>Problem-Solving & Critical Thinking:</strong> Example: An alert pops up, but is it a false positive or a real threat? You need to investigate calmly, ask the right questions, and avoid jumping to conclusions.</li>
+            <li><strong>Handling Pressure, Don't Panic:</strong> Example: During a real security incident, everyone looks to the SOC for answers. Stay calm, follow the process, and communicate clearly. Panic leads to mistakes.</li>
+            <li><strong>Adaptability & Continuous Learning:</strong> Example: New attack techniques appear all the time. Stay curious, keep learning, and be open to new tools, methods, and processes.</li>
+            <li><strong>Time Management:</strong> Example: Multiple alerts, meetings, and investigations, you need to prioritize tasks, avoid distractions, and manage your time effectively.</li>
+          </ul>
+
+          <p><strong>Remember:</strong> These are just examples. You should actively search for resources to improve your soft skills, they are often more important than technical skills. In cybersecurity, knowing how to deal with people, communicate effectively, stay calm under pressure, and work as part of a team will take you much further than technical knowledge alone.</p>
+          
+          <span class="highlight">10. Building a Strong LinkedIn Profile</span>
+          <strong>Showcase your skills and connect with professionals:</strong>
+          <ul>
+            <li>Clear headline & professional photo</li>
+            <li>Highlight projects, labs, and certifications</li>
+            <li>Engage with cybersecurity content</li>
+          </ul>
+
+          <span class="highlight">11. Apply for Jobs While Learning</span>
+          <strong>Don't wait to be "perfect", apply for:</strong>
+          <ul>
+            <li>SOC Analyst Level 1 or internships</li>
+            <li>Entry-level security roles</li>
+          </ul>
+
+          <span class="highlight">12. Pro Tips to Stand Out</span>
+          <strong>Show your real effort in your CV:</strong>
+          <p><strong>It's not enough to just list courses like:</strong></p>
+          <ul>
+            <li>"I finished this course"</li>
+            <li>"I did that certification"</li>
+          </ul>
+          <p><strong>What really makes you stand out is showing what you actually did:</strong></p>
+          <ul>
+            <li>Mention specific labs and scenarios you worked on</li>
+            <li>Highlight real projects or simulations you solved</li>
+            <li>Show your problem-solving mindset</li>
+          </ul>
+          <p>Hiring managers love candidates who can demonstrate hands-on work, not just paper knowledge.</p>
+
+          <p><strong>Broaden Your Opportunities:</strong></p>
+          <p>Don't limit yourself to only "SOC Analyst" job titles. The key is to get your foot in the door. Look for any security-related roles, such as:</p>
+          <ul>
+            <li>SOC Admin</li>
+            <li>Other entry-level Security roles</li>
+            <li>Information Security positions</li>
+            <li>GRC (Governance, Risk & Compliance) roles</li>
+            <li>Any role that helps you gain real-world experience and build your network</li>
+          </ul>
+          <p>Once you're inside the field, transitioning to other roles becomes much easier. You gain experience, build your network, and get exposed to different areas, that's when you can confidently decide if you want to stay in SOC, move to a technical role, explore GRC, or something else.</p>
+
+          <p><strong>Attend cybersecurity events, conferences, and bootcamps whenever possible.</strong></p>
+          <p>It's one of the fastest ways to:</p>
+          <ul>
+            <li>Build your network</li>
+            <li>Get insider advice</li>
+            <li>Find hidden job opportunities</li>
+            <li>Stay motivated</li>
+          </ul>
+
+          <p><strong>Keep Building Your Skills:</strong></p>
+          <p>Once you finish the basics, don't stop here. This field requires continuous learning. Challenge yourself with hands-on labs like:</p>
+          <ul>
+            <li>CyberDefenders Labs</li>
+            <li>TryHackMe</li>
+            <li>LetsDefend</li>
+            <li>And more, practical experience is the best way to grow</li>
+          </ul>
+
+          <p><strong>Find a Mentor (If Possible)</strong></p>
+          <p>Having someone more experienced to guide you can speed up your learning curve. A mentor can help you avoid common mistakes, give feedback, recommend resources, and share real-world insights that courses alone can't provide. You don't need formal mentorship, even building connections with senior colleagues or professionals on platforms like LinkedIn can make a big difference.</p>
+
+          <span class="highlight">12. Interview Preparation - Anand Guru's PDFs</span>
+          <strong>Practice with:</strong>
+          <ul>
+            <li>11 PDF guides covering SOC interview questions</li>
+            <li>Much of what you list on your CV will be questioned during the interview. Be prepared to talk about it confidently</li>
+            <li>Be prepared for the HR interview as well, it's just as important as the technical part. Such as:
+              <ul>
+                <li>Why you want to work in this field (or this company)</li>
+                <li>Your strengths and weaknesses</li>
+                <li>How you work within a team</li>
+                <li>A client is panicked about a security incident, how would you handle the situation?</li>
+                <li>Your long-term career goals</li>
+                <li>And more ..</li>
+              </ul>
+            </li>
+          </ul>
+          
+          <hr>
+          
+          <span class="highlight">Funny but true</span>
+          <p>I often get asked for direct links to every resource, but developing strong search skills is a big part of succeeding in this field. Cybersecurity requires curiosity, patience, and the ability to research and find answers independently.</p>
+          
+          <span class="highlight">Finally</span>
+          <p>Just a heads-up: Some resources may be paid, and that's completely fine. Learning is an investment not just time, but sometimes money too.</p>
+
+          <p>These practical exercises sharpen your skills and prepare you for real-world scenarios. But be honest with yourself, if you're only chasing money and you don't enjoy learning this field, believe me, you won't last long here.</p>
+
+          <p>Before fully committing, check this honest article to see if this field is right for you:</p>
+          <p><a href="https://yusufamr.com/articles/desciding_cybersecurity_future.html" target="_blank">Is Cybersecurity for You? Read this first</a></p>
+
+          <p>Breaking into SOC takes consistency, not perfection. Start today, stay curious, and never stop learning.</p>
+          <p>Good luck on your journey!</p>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    window.addEventListener('load', function() {
+      setTimeout(function() {
+        document.getElementById('page-loader').classList.add('hidden');
+        document.getElementById('article-wrapper').classList.add('loaded');
+      }, 100);
+    });
+
+    window.addEventListener('scroll', function() {
+      const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      document.getElementById('reading-progress').style.width = scrolled + '%';
+    });
+  </script>
+</body>
+</html>

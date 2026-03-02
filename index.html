@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    
+    <!-- SEO & OpenGraph -->
+    <title>Yusuf Amr | DFIR & Incident Responder</title>
+    <meta name="description" content="{{jobDescription}}">
+    <meta property="og:title" content="{{name}}"/>
+    <meta property="og:description" content="{{jobTitle}}"/>
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="articles/assets/logo.jpg" />
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="./utils/favicon_io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./utils/favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./utils/favicon_io/favicon-16x16.png">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/@mdi/font@4.x/css/materialdesignicons.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <style>
+      /* Layout Overrides for Premium Feel */
+      .v-application {
+        background-color: var(--bg) !important;
+        font-family: var(--font-sans) !important;
+      }
+      .v-application a { color: var(--accent); }
+      
+      .hero-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        padding: 10rem 0 6rem;
+      }
+
+      .nav-fixed {
+        position: fixed;
+        top: 0; left: 0; right: 0;
+        z-index: 100;
+        background: rgba(5, 5, 5, 0.8);
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid var(--border);
+        padding: 1rem 0;
+      }
+
+      .status-dot {
+        height: 8px; width: 8px;
+        background: #10b981;
+        border-radius: 50%;
+        display: inline-block;
+        margin-right: 8px;
+        box-shadow: 0 0 10px #10b981;
+      }
+    </style>
+</head>
+
+<body>
+  <div id="preloader">
+    <div class="spinner"></div>
+  </div>
+
+  <div id="app" v-cloak>
+    <v-app>
+      <!-- Premium Navigation -->
+      <nav class="nav-fixed">
+        <div class="container d-flex align-center justify-space-between">
+          <div class="font-weight-bold letter-spacing-tight" style="font-family: var(--font-mono); font-size: 0.9rem;">
+            <span class="text-secondary">0x</span>{{name.split(' ')[0].toUpperCase()}}
+          </div>
+          <div class="d-flex align-center gap-4">
+            <a href="#article" class="nav-link mr-6">/RESEARCH</a>
+            <a href="#contact" class="nav-link">/CONNECT</a>
+          </div>
+        </div>
+      </nav>
+
+      <main class="container">
+        <!-- Rebuilt Hero Section -->
+        <header class="hero-grid">
+          <div data-aos="fade-up">
+            <div class="section-label">
+              <span><span class="status-dot"></span>AVAILABLE FOR RESEARCH</span>
+            </div>
+            <h1 class="display-large mb-6">{{name}}</h1>
+            <h2 class="text-h4 text-secondary font-weight-regular mb-8" style="max-width: 800px; line-height: 1.3;">
+              {{jobTitle}} specialized in <span class="text-white">Digital Forensics</span> and <span class="text-white">Incident Response</span>.
+            </h2>
+            <p class="text-h6 text-dim mb-10" style="max-width: 600px;">
+              {{jobDescription}}
+            </p>
+            <div class="d-flex flex-wrap gap-4">
+              <v-btn href="#article" large class="btn-premium mr-4">Explore Writeups</v-btn>
+              <v-btn href="#contact" large outlined color="white" style="border-radius: 0;">System Contact</v-btn>
+            </div>
+          </div>
+        </header>
+
+        <!-- Technical Articles Grid -->
+        <section id="article" class="py-16">
+          <div class="section-label" data-aos="fade-up">PUBLISHED_RESEARCH</div>
+          <v-row>
+            <v-col v-for="(item, index) in article" :key="index" cols="12" md="6" lg="4" class="pa-4">
+              <v-card class="research-card" data-aos="fade-up" :href="item.link">
+                <div class="d-flex align-center mb-4">
+                  <span class="text-dim font-family-mono text-caption">FILE_0{{index + 1}}</span>
+                  <v-spacer></v-spacer>
+                  <v-icon small color="grey darken-2">mdi-arrow-top-right</v-icon>
+                </div>
+                <h3 class="text-h5 mb-4 font-weight-bold" style="min-height: 3.5rem;">{{item.name}}</h3>
+                <p class="text-secondary text-body-2 mb-6" style="display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;">
+                  {{item.description}}
+                </p>
+                <div class="pt-4 border-top" style="border-top: 1px solid var(--border);">
+                  <span class="font-family-mono text-caption text-accent">READ_ANALYSIS</span>
+                </div>
+              </v-card>
+            </v-col>
+          </v-row>
+        </section>
+
+        <!-- Redesigned Contact Section -->
+        <section id="contact" class="py-16 mb-16">
+          <div class="section-label" data-aos="fade-up">SECURE_COMMUNICATION</div>
+          <div class="text-center py-16" data-aos="fade-up">
+            <h2 class="display-2 mb-10">Initiate Collaboration</h2>
+            <div class="mb-12">
+              <div class="text-h4 font-weight-bold mb-2" v-if="contacts && contacts.email">{{contacts.email}}</div>
+              <div class="text-secondary font-family-mono" v-if="contacts && contacts.mobileNo">CID: {{contacts.mobileNo}}</div>
+            </div>
+            <div class="d-flex justify-center flex-wrap">
+              <v-btn v-for="(link, index) in contactLinks" 
+                     :key="index"
+                     :href="link.link"
+                     target="_blank"
+                     text
+                     x-large
+                     class="mx-4 font-family-mono letter-spacing-widest"
+                     style="color: var(--text-muted);">
+                // {{link.name.toUpperCase()}}
+              </v-btn>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer class="py-8 border-top" style="border-top: 1px solid var(--border);">
+        <div class="container d-flex justify-space-between align-center text-caption text-dim font-family-mono">
+          <span>&copy; {{new Date().getFullYear()}} {{name.toUpperCase()}}</span>
+          <span>SYSTEM_STATUS: OPERATIONAL</span>
+        </div>
+      </footer>
+    </v-app>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
+  <script src="config.js"></script>
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script>
+    new Vue({
+      el: '#app',
+      vuetify: new Vuetify({ theme: { dark: true } }),
+      data() {
+        return { ...window.PorfolioConfig };
+      },
+      computed: {
+        contactLinks() {
+          return this.contacts?.links || [];
+        }
+      },
+      mounted() {
+        AOS.init({ duration: 800, once: true });
+        document.getElementById('preloader').style.display = 'none';
+      }
+    });
+  </script>
+</body>
+</html>

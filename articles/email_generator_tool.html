@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>/Email Generator Tool</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="./../styles.css">
+  <link href="https://cdn.jsdelivr.net/npm/@mdi/font@4.x/css/materialdesignicons.min.css" rel="stylesheet">
+  
+  <style>
+    #article-wrapper {
+      opacity: 0;
+      transition: opacity 0.2s ease;
+    }
+    
+    #article-wrapper.loaded {
+      opacity: 1;
+    }
+    
+    #page-loader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--bg, #0a0a0a);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      transition: opacity 0.3s ease;
+    }
+    
+    #page-loader.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+    
+    .loader-spinner {
+      width: 40px;
+      height: 40px;
+      border: 3px solid var(--border, #333);
+      border-top-color: var(--accent, #ff6b6b);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin-bottom: 1rem;
+    }
+    
+    .loader-text {
+      color: var(--text-muted, #888);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.9rem;
+    }
+    
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+  <div id="page-loader">
+    <div class="loader-spinner"></div>
+    <div class="loader-text">Loading article...</div>
+  </div>
+  
+  <div class="reading-progress" id="reading-progress"></div>
+  
+  <div id="article-wrapper">
+    <a href="https://yusufamr.com/" class="back-button">
+      <span class="mdi mdi-home"></span>
+      <span>Home</span>
+    </a>
+
+    <main class="container">
+      <section>
+        <header class="article-header">
+          <h1 class="article-title">/Email Generator Tool</h1>
+          <div class="article-meta">
+            <span class="article-meta-item">
+              <span class="mdi mdi-calendar"></span>
+              13 July 2024
+            </span>
+            <span class="article-meta-item">
+              <span class="mdi mdi-account"></span>
+              Yusuf Amr
+            </span>
+          </div>
+        </header>
+
+        <div class="article-content">
+          <img src="./assets/email_generator_tool/email-generator-tool.png" alt="Email Generator Tool" >
+          I wanted to share a tool that I've created and really enjoy using. It's not highly technical, but it's incredibly useful and very simple. This tool automates the creation of standardized email templates. It simplifies writing repetitive emails by allowing you to input essential details, ensuring accuracy and saving time, and here's why i find it beneficial too:
+
+          <ul>
+            <li>Writing routine emails can be time-consuming, especially when each email requires specific data such as dates, IP addresses, port numbers, and other essential details.</li>
+            <li>Missing these details or misspelling words can lead to misunderstandings or incomplete communication. So, this would automates the creation of email templates, speeding up the process and reducing the likelihood of missing important information or the spelling and grammatical mistakes.</li>
+            <li>In situations requiring rapid response, the speed of communication and containment is crucial.</li>
+            <li>It helps new candidates adapt quickly to the email format of your organization and avoid mistakes.</li>
+          </ul>
+          
+          This tool is not limited to this field of cybersecurity but can be adapted and customized for various fields.
+          
+          Feel free to download and modify it according to your specific needs. Make sure to provide the email templates first in the code.
+          
+          <span class="highlight">Installation</span>
+          Clone the repository:
+          
+          <pre><code>git clone https://github.com/Yusuf-Amr/Email-Generator.git
+cd Email-Generator</code></pre>
+          
+          <span class="highlight">Usage</span>
+          Run the main script to generate email templates:
+          
+          <pre><code>python3 main.py</code></pre>
+          
+          <p>Follow the prompts to select the type of email template you want to generate and enter the required information.</p>
+          
+          <span class="highlight">Demo</span>
+          <p>Check this: <a href="https://www.linkedin.com/posts/yusuf-amr_cybersecurity-informationsecurity-soc-activity-7217860684196282368-8zKh?utm_source=share&utm_medium=member_desktop" target="_blank">LinkedIn Post</a></p>
+         
+          <p>Explore it on Github: <a href="https://github.com/Yusuf-Amr/Email-Generator" target="_blank">https://github.com/Yusuf-Amr/Email-Generator</a></p>
+
+          <p>Wishing you find it useful!</p>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    window.addEventListener('load', function() {
+      setTimeout(function() {
+        document.getElementById('page-loader').classList.add('hidden');
+        document.getElementById('article-wrapper').classList.add('loaded');
+      }, 100);
+    });
+
+    window.addEventListener('scroll', function() {
+      const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      document.getElementById('reading-progress').style.width = scrolled + '%';
+    });
+  </script>
+</body>
+</html>

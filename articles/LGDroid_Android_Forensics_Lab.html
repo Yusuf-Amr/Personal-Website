@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>/Walkthrough: LGDroid Android Forensics Lab</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="./../styles.css">
+  <link href="https://cdn.jsdelivr.net/npm/@mdi/font@4.x/css/materialdesignicons.min.css" rel="stylesheet">
+  
+  <style>
+    #article-wrapper {
+      opacity: 0;
+      transition: opacity 0.2s ease;
+    }
+    
+    #article-wrapper.loaded {
+      opacity: 1;
+    }
+    
+    #page-loader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--bg, #0a0a0a);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      transition: opacity 0.3s ease;
+    }
+    
+    #page-loader.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+    
+    .loader-spinner {
+      width: 40px;
+      height: 40px;
+      border: 3px solid var(--border, #333);
+      border-top-color: var(--accent, #ff6b6b);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin-bottom: 1rem;
+    }
+    
+    .loader-text {
+      color: var(--text-muted, #888);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.9rem;
+    }
+    
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+  <div id="page-loader">
+    <div class="loader-spinner"></div>
+    <div class="loader-text">Loading article...</div>
+  </div>
+  
+  <div class="reading-progress" id="reading-progress"></div>
+  
+  <div id="article-wrapper">
+    <a href="https://yusufamr.com/" class="back-button">
+      <span class="mdi mdi-home"></span>
+      <span>Home</span>
+    </a>
+
+    <main class="container">
+      <section>
+        <header class="article-header">
+          <h1 class="article-title">/Walkthrough: LGDroid Android Forensics Lab</h1>
+          <div class="article-meta">
+            <span class="article-meta-item">
+              <span class="mdi mdi-calendar"></span>
+              12 April 2024
+            </span>
+            <span class="article-meta-item">
+              <span class="mdi mdi-account"></span>
+              Yusuf Amr
+            </span>
+          </div>
+        </header>
+
+        <div class="article-content">
+          <img src="./assets/LGDroid_Android_Forensics_Lab/background.png" alt="Android Forensics" >
+          <span class="highlight">Given Scenario:</span>
+
+          "Our IR team took a disk dump of the android phone. As a soc analyst, analyze the dump and answer the provided questions."
+
+          <p><a href="https://cyberdefenders.org/blueteam-ctf-challenges/lgdroid" target="_blank">Lab Link: https://cyberdefenders.org/blueteam-ctf-challenges/lgdroid</a></p>
+
+          <img src="./assets/LGDroid_Android_Forensics_Lab/1.png" alt="Lab Setup" >
+          
+          <span class="highlight">Q1 Answer:</span>
+
+          Download the Files: Before we begin, let's download the necessary files. We'll be working with these files throughout the process. Exploring the Structure: Now, let's take a closer look at the downloaded files to understand where to find the information we need. This will give us a roadmap for locating the specific requirements.
+
+          To find email addresses, we'll target the contact database. I'll be using DB Browser for SQLite to analyze its contents.
+
+          The Agent Data directory contains a SQLite database named "Contacts3.db"
+                    
+          <img src="./assets/LGDroid_Android_Forensics_Lab/2.png" alt="Contacts Database" >
+          
+          <span class="highlight">Q2 Answer:</span>
+
+          This one is straight forward too
+                      
+          <img src="./assets/LGDroid_Android_Forensics_Lab/3.png" alt="Q2 Solution 1" >
+          <img src="./assets/LGDroid_Android_Forensics_Lab/4.png" alt="Q2 Solution 2" >
+          
+          <span class="highlight">Q3 Answer:</span>
+
+          The Agent Data folder contains a SQLite database named "downloads.db"
+          <img src="./assets/LGDroid_Android_Forensics_Lab/5.png" alt="Downloads DB" >
+          <img src="./assets/LGDroid_Android_Forensics_Lab/6.png" alt="Download Info" >
+
+          To convert the time, we will be using the following website:
+
+          <p><a href="https://www.epochconverter.com" target="_blank">https://www.epochconverter.com</a></p>
+
+          <img src="./assets/LGDroid_Android_Forensics_Lab/7.png" alt="Time Conversion" >
+          
+          <span class="highlight">Q4 Answer:</span>
+
+          Another technique involves using grep with the following arguments:
+
+          <ul>
+            <li><strong>-r:</strong> This option tells grep to search recursively within directories. It will search the current directory and all subdirectories for matching files.</li>
+            <li><strong>-l:</strong> This option instructs grep to only list the filenames containing the pattern. It won't display the actual matching lines within the files.</li>
+            <li><strong>-i:</strong> This option makes the search case-insensitive.</li>
+          </ul>
+
+          <p>So this will help us for text searching in files.</p>
+
+          <p>For example i want to find files that have reset word and related to any battery file:</p>
+          
+          <img src="./assets/LGDroid_Android_Forensics_Lab/8.png" alt="Grep Search 1" >
+          <img src="./assets/LGDroid_Android_Forensics_Lab/9.png" alt="Grep Search 2" >
+          Now that we've identified a reset time mentioned in the text file, let's go back and examine the surrounding context for further insights.
+          <img src="./assets/LGDroid_Android_Forensics_Lab/10.png" alt="Context Analysis" >
+          we will notice the battery has status when it was 0%, charging and full at the bottom as shown:
+          <img src="./assets/LGDroid_Android_Forensics_Lab/11.png" alt="Battery Status 1" >
+          <img src="./assets/LGDroid_Android_Forensics_Lab/12.png" alt="Battery Status 2" >
+          Here it took 5 minutes and 1 second till fully charging.
+
+          So, the answer would be: 13:12:19 + 00:05:01 = 13:17:20
+
+          <span class="highlight">Q5 Answer:</span>
+
+          This one is hard and I did little bit research to solve it, here's how:
+
+          Firstly, I wanted to get the WIFI information by doing the below but couldn't get the password:
+          <img src="./assets/LGDroid_Android_Forensics_Lab/13.png" alt="WiFi Search" >
+          Found two possible locations for the password as shown:
+
+          <p><a href="https://stackoverflow.com/questions/14964305/where-does-android-store-system-settings-such-as-wifi-networks" target="_blank">Stack Overflow: Where does Android store WiFi settings?</a></p>
+
+          <img src="./assets/LGDroid_Android_Forensics_Lab/14.png" alt="WiFi Locations" >
+          So it's somewhere in Data Path and here found the following:
+          <img src="./assets/LGDroid_Android_Forensics_Lab/15.png" alt="Data Path" >
+          By unzipping it, found the a similar paths to the second possible location:
+          <img src="./assets/LGDroid_Android_Forensics_Lab/16.png" alt="Unzip Results" >
+          <img src="./assets/LGDroid_Android_Forensics_Lab/17.png" alt="File Contents" >
+          By opening it with VIM:
+          <img src="./assets/LGDroid_Android_Forensics_Lab/18.png" alt="VIM Editor" >
+          Great! We here were able to find the WIFI name but I wasn't sure which is the password, so by searching about WPA_PSK so as to understand its mechanism and decide which is the password from what we found.
+          <img src="./assets/LGDroid_Android_Forensics_Lab/19.png" alt="WPA_PSK Search" >
+          <p><a href="https://www.techopedia.com/definition/22921/wi-fi-protected-access-pre-shared-key-wpa-psk" target="_blank">Techopedia: WPA-PSK Definition</a></p>
+
+          <img src="./assets/LGDroid_Android_Forensics_Lab/20.png" alt="WPA Explanation" >
+          So from this we can conclude that the password is the PreSharedKey.
+
+          <span class="highlight">Q6 Answer:</span>
+
+          Let's use the grep:
+          <img src="./assets/LGDroid_Android_Forensics_Lab/21.png" alt="Grep Q6" >
+          Here the mentioned date appears at these files and by searching at them, we find:
+          <img src="./assets/LGDroid_Android_Forensics_Lab/22.png" alt="Q6 Results" >
+          
+          <span class="highlight">Q7 Answer:</span>
+
+          Again using grep:
+          <img src="./assets/LGDroid_Android_Forensics_Lab/23.png" alt="Grep Q7" >
+          total time isn't the answer and the hint shows that we should focus on the difference between the foreground of background time: 22:47:57 - 14:13:27
+
+          <span class="highlight">Q8 Answer:</span>
+
+          We find the original image after unzipping sdcard then DCIM then Camera directory. The purpose of the question to SSIM which is an important metric for image similarity and it can be helpful to detect image forgery or potential manipulation.
+
+          By using the code provided in the hint: <a href="https://ourcodeworld.com/articles/read/991/how-to-calculate-the-structural-similarity-index-ssim-between-two-images-with-python" target="_blank">How to calculate SSIM with Python</a>
+
+          <img src="./assets/LGDroid_Android_Forensics_Lab/24.png" alt="SSIM Analysis 1" >
+          <img src="./assets/LGDroid_Android_Forensics_Lab/25.png" alt="SSIM Analysis 2" >
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    window.addEventListener('load', function() {
+      setTimeout(function() {
+        document.getElementById('page-loader').classList.add('hidden');
+        document.getElementById('article-wrapper').classList.add('loaded');
+      }, 100);
+    });
+
+    window.addEventListener('scroll', function() {
+      const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      document.getElementById('reading-progress').style.width = scrolled + '%';
+    });
+  </script>
+</body>
+</html>

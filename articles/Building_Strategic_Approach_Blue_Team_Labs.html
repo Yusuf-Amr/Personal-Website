@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>/Beyond the Walkthoughs: Building a Strategic Approach to Blue Team Labs</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="./../styles.css">
+  <link href="https://cdn.jsdelivr.net/npm/@mdi/font@4.x/css/materialdesignicons.min.css" rel="stylesheet">
+  
+  <style>
+    #article-wrapper {
+      opacity: 0;
+      transition: opacity 0.2s ease;
+    }
+    
+    #article-wrapper.loaded {
+      opacity: 1;
+    }
+    
+    #page-loader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--bg, #0a0a0a);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      transition: opacity 0.3s ease;
+    }
+    
+    #page-loader.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+    
+    .loader-spinner {
+      width: 40px;
+      height: 40px;
+      border: 3px solid var(--border, #333);
+      border-top-color: var(--accent, #ff6b6b);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin-bottom: 1rem;
+    }
+    
+    .loader-text {
+      color: var(--text-muted, #888);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.9rem;
+    }
+    
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+  <div id="page-loader">
+    <div class="loader-spinner"></div>
+    <div class="loader-text">Loading article...</div>
+  </div>
+  
+  <div class="reading-progress" id="reading-progress"></div>
+  
+  <div id="article-wrapper">
+    <a href="https://yusufamr.com/" class="back-button">
+      <span class="mdi mdi-home"></span>
+      <span>Home</span>
+    </a>
+
+    <main class="container">
+      <section>
+        <header class="article-header">
+          <h1 class="article-title">/Beyond the Walkthoughs: Building a Strategic Approach to Blue Team Labs</h1>
+          <div class="article-meta">
+            <span class="article-meta-item">
+              <span class="mdi mdi-calendar"></span>
+              10 April 2024
+            </span>
+            <span class="article-meta-item">
+              <span class="mdi mdi-account"></span>
+              Yusuf Amr
+            </span>
+          </div>
+        </header>
+
+        <div class="article-content">
+          <img src="./assets/Building_Strategic_Approach_Blue_Team_Labs/background.jpeg" alt="Blue Team Labs" >
+          In this article, I want to share a tip strategy for tackling cybersecurity labs effectively. We've all experienced it: staring at a scenario, rushing into answering the questions, and blindly copying commands without grasping the process. Although these labs simulate real-world situations, this method doesn't prepare you for the actual challenges. So, I'll present an alternative walkthrough that I believe is more effective and hopefully beneficial for you.
+
+          <span class="highlight">Here's the Strategy:</span>
+          
+          The strategy prioritizes understanding the scenario first. By actively asking ourselves investigative questions and seeking answers, we document our findings, building a comprehensive picture of the attack. Instead of reacting to pre-defined questions, we're uncovering the story ourselves. We start by identifying artifacts left behind by the attacker. These artifacts become our initial clues, leading us to explore attacker behavior and ultimately, the root cause of the compromise.
+          
+          <span class="highlight">Steps:</span>
+          
+          <ol>
+            <li><strong>Get Into the Scene:</strong> Before jumping into questions, take a moment to truly grasp the scenario. Imagine yourself right in the middle of it. What security threats are apparent? What might have caused the problem? What do we need to look for? Where do we begin?</li>
+            <li><strong>Suspect Malware? Time for Investigation:</strong> We have a memory dump. How do we uncover it? Let's search for tools. You might find Volatility, a useful tool! How to get into a good start point?</li>
+            <li><strong>Track the Clues:</strong> With Volatility, you might find commands to spot suspicious stuff. You're getting it, sharpening those critical thinking skills.</li>
+          </ol>
+          
+          <span class="highlight">Feeling stuck? No problem!</span>
+          
+          If you're feeling lost, take a look at the first question. It might provide a helpful hint to guide you back on track. But keep it as your last option.
+          
+          The more you approach labs this way, the more skilled you'll become. This is the skillset you want to improve.
+          
+          This is the lab we will practice with in the article:
+          
+          <span class="highlight">Given Scenario</span>
+          
+          As a member of the Security Blue team, your assignment is to analyze a memory dump using Redline and Volatility tools. Your goal is to trace the steps taken by the attacker on the compromised machine and determine how they managed to bypass the Network Intrusion Detection System "NIDS". Your investigation will involve identifying the specific malware family employed in the attack, along with its characteristics. Additionally, your task is to identify and mitigate any traces or footprints left by the attacker.
+          
+          <p>Lab Link: <a href="https://cyberdefenders.org/blueteam-ctf-challenges/redline" target="_blank">https://cyberdefenders.org/blueteam-ctf-challenges/redline</a></p>
+
+          
+          <p>Here you can find Volatility cheatsheet:</p>
+          
+          <p><a href="https://blog.onfvp.com/post/volatility-cheatsheet" target="_blank">https://blog.onfvp.com/post/volatility-cheatsheet</a></p>
+
+          
+          <p>First command at the cheatsheet is listing all processes on the memory, so why not let's do it? By the way, there's also a command in Volatility to find malicious processes directly. I always recommend writing vol -h to read the full list of commands and options. You can choose whichever one suits your needs. But for this example, I prefer to list all processes and see them in a tree form to visualize parent-child processes. This can be achieved using the following command:</p>
+          
+          <img src="./assets/Building_Strategic_Approach_Blue_Team_Labs/1.png" alt="Process Listing" >
+          <img src="./assets/Building_Strategic_Approach_Blue_Team_Labs/2.png" alt="Process Tree" >
+          I examined all running processes and noticed interesting entry: outline. Outline is a known VPN software.
+          
+          This caught my attention, as it suggests a potential attempt to establish a VPN connection. To investigate further, I'll need to analyze the network traffic and see if there's any evidence of VPN activity.
+          
+          While I'm unfamiliar with tun2socks.exe, the name hints at a possible connection to VPN functionality. To confirm its role, a quick Google search is in order.
+          
+          Here's what I found online
+          <img src="./assets/Building_Strategic_Approach_Blue_Team_Labs/3.png" alt="Search Results" >
+          After examining the initial processes, I continued my investigation and explored others on the system. As expected, most were common Windows services, along with applications like msedge (Microsoft Edge browser), skype, and FTK (forensic toolkit software). However, one process stood out: oneetx.exe.
+          <img src="./assets/Building_Strategic_Approach_Blue_Team_Labs/4.png" alt="Process Analysis" >
+          <img src="./assets/Building_Strategic_Approach_Blue_Team_Labs/5.png" alt="Process Details" >
+          Unfamiliar with this process, I conducted a quick online search to learn more about it. My research revealed that oneetx.exe is associated with a dangerous malware program known as Amadey dropper. This malware is known for its ability to steal sensitive information and install additional malicious payloads on the infected system.
+          
+          Here, I was able to gather additional information. Typically, infections occur through downloading games, and analyzing the infected path on the system has helped in understanding the behavior.
+          
+          <p><a href="https://www.vmray.com/analyses/_mb/a4ac65cada8b/report/behavior_grouped.html" target="_blank">VMray Analysis</a></p>
+
+          <img src="./assets/Building_Strategic_Approach_Blue_Team_Labs/6.png" alt="VMray Report" >
+          <img src="./assets/Building_Strategic_Approach_Blue_Team_Labs/7.png" alt="Analysis Results" >
+          <img src="./assets/Building_Strategic_Approach_Blue_Team_Labs/8.png" alt="Analysis Findings" >
+          I saved its PID: 5896. That's nice; that was straightforward.
+          
+          Let's add to our findings.
+          
+          And as you can see, why I prefer pstree, because I noticed that there is a child process for the oneetx and outline.
+          
+          Now, let's try the malfind command in Volatility, which lists processes that potentially contain injected code, called windows.malfind.Malfind. Let's try it.
+          
+          Here, the results confirm our findings:
+          <img src="./assets/Building_Strategic_Approach_Blue_Team_Labs/9.png" alt="Malfind Results" >
+          Now, what if I want to retrieve the hash of this process to search more about it and add to our findings? We can utilize the Volatility cheatsheet for this purpose.
+          <img src="./assets/Building_Strategic_Approach_Blue_Team_Labs/10.png" alt="Hash Extraction" >
+          <img src="./assets/Building_Strategic_Approach_Blue_Team_Labs/23.png" alt="Hash Results" >
+
+          Great! Lets check its reputation:
+          <img src="./assets/Building_Strategic_Approach_Blue_Team_Labs/12.png" alt="Reputation Check" >
+          The process name was the same as what we found earlier. This implies that the user downloaded the game, and here lies the root cause. It would be beneficial if we find any URLs related to it. So now, let's move on to the network traffic analysis to check if there are any connections from the malicious oneetx process we found, and also to verify the VPN we identified earlier. This can be accomplished using the netscan command in Volatility.
+          <img src="./assets/Building_Strategic_Approach_Blue_Team_Labs/13.png" alt="Network Scan 1" >
+          <img src="./assets/Building_Strategic_Approach_Blue_Team_Labs/14.png" alt="Network Scan 2" >
+          <img src="./assets/Building_Strategic_Approach_Blue_Team_Labs/15.png" alt="Network Scan 3" >
+
+          As observed, the VPN connections were established before the malicious process oneetx directly. This correlation suggests that it might have been orchestrated by the attacker. However, to gather more indicators, we can get more deeply into the network activity and examine other potential points of compromise.
+          
+          Well, I found another indicator here:
+          <img src="./assets/Building_Strategic_Approach_Blue_Team_Labs/16.png" alt="Additional Indicator" >
+
+          This indicator further confirms that the VPN connection with the attacker was established prior to executing the process and promptly deleting its traces afterward.
+          
+          Upon inspecting the IPs, I found "77.91.124.20" which was associated with oneetx.exe:
+          <img src="./assets/Building_Strategic_Approach_Blue_Team_Labs/17.png" alt="IP Analysis 1" >
+          <img src="./assets/Building_Strategic_Approach_Blue_Team_Labs/18.png" alt="IP Analysis 2" >
+          Finally, I want to examine two things: everything about this process "oneex" and any IP addresses stored in the memory. Here, I prefer using the strings command to extract all strings and match them for further analysis.
+          <img src="./assets/Building_Strategic_Approach_Blue_Team_Labs/19.png" alt="Strings Analysis 1" >
+          <img src="./assets/Building_Strategic_Approach_Blue_Team_Labs/24.png" alt="Strings Analysis 2" >
+          Here is another finding:
+          <img src="./assets/Building_Strategic_Approach_Blue_Team_Labs/21.png" alt="Additional Finding" >
+
+          Very nice, now that we have our findings, let's proceed to answer the questions.
+          <img src="./assets/Building_Strategic_Approach_Blue_Team_Labs/20.png" alt="Answers" >
+          <p><strong>Q1:</strong> oneetx.exe</p>
+          <p><strong>Q2:</strong> rundll32.exe</p>
+          <p><strong>Q3:</strong> we can find it here:</p>
+          <img src="./assets/Building_Strategic_Approach_Blue_Team_Labs/22.png" alt="Q3 Answer" >
+          <p><strong>Q4:</strong> Outline.exe</p>
+          <p><strong>Q5:</strong> 77.91.124.20</p>
+          <p><strong>Q6:</strong> redline stealer</p>
+          <p><strong>Q7:</strong> hxxp://77.91.124.20/store/games/index.php</p>
+          <p><strong>Q8:</strong> C:\Users\Tammam\AppData\Local\Temp\c3912af058\oneetx.exe</p>
+          
+          In conclusion, our proactive investigation enabled us to gather a lot of findings and understand what happened even before we looked at the questions. This approach, I believe, develops skills as it encourages a deeper understanding of the situation at hand.
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    window.addEventListener('load', function() {
+      setTimeout(function() {
+        document.getElementById('page-loader').classList.add('hidden');
+        document.getElementById('article-wrapper').classList.add('loaded');
+      }, 100);
+    });
+
+    window.addEventListener('scroll', function() {
+      const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      document.getElementById('reading-progress').style.width = scrolled + '%';
+    });
+  </script>
+</body>
+</html>

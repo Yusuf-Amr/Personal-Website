@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>/Private Local AI</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="./../styles.css">
+  <link href="https://cdn.jsdelivr.net/npm/@mdi/font@4.x/css/materialdesignicons.min.css" rel="stylesheet">
+  
+  <style>
+    #article-wrapper {
+      opacity: 0;
+      transition: opacity 0.2s ease;
+    }
+    
+    #article-wrapper.loaded {
+      opacity: 1;
+    }
+    
+    #page-loader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--bg, #0a0a0a);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      transition: opacity 0.3s ease;
+    }
+    
+    #page-loader.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+    
+    .loader-spinner {
+      width: 40px;
+      height: 40px;
+      border: 3px solid var(--border, #333);
+      border-top-color: var(--accent, #ff6b6b);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin-bottom: 1rem;
+    }
+    
+    .loader-text {
+      color: var(--text-muted, #888);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.9rem;
+    }
+    
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+  <div id="page-loader">
+    <div class="loader-spinner"></div>
+    <div class="loader-text">Loading article...</div>
+  </div>
+  
+  <div class="reading-progress" id="reading-progress"></div>
+  
+  <div id="article-wrapper">
+    <a href="https://yusufamr.com/" class="back-button">
+      <span class="mdi mdi-home"></span>
+      <span>Home</span>
+    </a>
+
+    <main class="container">
+      <section>
+        <header class="article-header">
+          <h1 class="article-title">/Private Local AI</h1>
+          <div class="article-meta">
+            <span class="article-meta-item">
+              <span class="mdi mdi-calendar"></span>
+              02 Jan 2025
+            </span>
+            <span class="article-meta-item">
+              <span class="mdi mdi-account"></span>
+              Yusuf Amr
+            </span>
+          </div>
+        </header>
+
+        <div class="article-content">
+          <img src="./assets/private_ai/private ai.jpg" alt="Private AI" >
+          <span class="highlight">Why Local Private AI?</span>
+          I've often been concerned about the accidental leakage of sensitive information through AI tools. In our day-to-day work, we may unknowingly share critical data with public AI platforms, potentially exposing confidential information. Additionally, some AI platforms might unintentionally reveal sensitive data through carefully crafted prompts, where a user manipulates the model to retrieve information it might have stored or cached.
+
+          I'll share how I've In this article, approached implementing a local, private AI solution, ensuring that all data is securely stored on the machine hosting the AI model.
+
+          <span class="highlight">To implement this, I chose OpenWebUI platform. It offered several advantages that made it ideal for my needs:</span>
+          <ul>
+            <li><strong>Web Interface:</strong> OpenWebUI functions as a web interface.</li>
+            <li><strong>Network Accessibility:</strong> It is accessible by devices on the same network.</li>
+            <li><strong>Robust Retrieval-Augmented Generation (RAG):</strong> This feature enhances the AI's ability to retrieve and use context-specific information.</li>
+            <li><strong>Ease of Integration:</strong> OpenWebUI supports straightforward API integrations, making it easier to connect with various data sources and tools.</li>
+            <li><strong>Data Localization:</strong> All data is processed and stored locally, ensuring that nothing leaves the organization's secure environment.</li>
+          </ul>
+
+          <span class="highlight">Implementation Steps:</span>
+          To set up OpenWebUI, I used an Ubuntu virtual machine running on VirtualBox. Below is an overview of the steps I followed:
+
+          <ul>
+            <li><strong>Setting Up the Virtual Environment:</strong>
+              <ul>
+                <li>Installed VirtualBox and created a new Ubuntu virtual machine (VM).</li>
+                <li>Configured the network settings to ensure access across devices within the LAN.</li>
+              </ul>
+            </li>
+            <li><strong>Installing OpenWebUI:</strong>
+              <ul>
+                <li>OpenWebUI requires Python 3.11, but Ubuntu's default version was Python 3.12. To address this, I Installed Python 3.11 and set up a virtual environment called myenv, ensuring that Python packages are isolated for the project:</li>
+              </ul>
+            </li>
+          </ul>
+          
+          <pre><code>sudo apt install python3.11 python3.11-venv
+sudo ln -sf /usr/bin/python3.11 /usr/bin/python3
+python3 -m venv myenv
+source myenv/bin/activate
+pip install open-webui
+deactivate</code></pre>
+          
+          <p>Installed OpenWebUI inside the virtual environment using python 3.11 and for the model we will use python 3.12 outside the virtual environment.</p>
+
+          <ul>
+            <li><strong>Integrating Meta's Llama 3 2B Model:</strong></li>
+          </ul>
+          
+          <p>To integrate Meta's Llama 3 2B model, Installed the model outside the virtual environment and switched back to Python 3.12:</p>
+          
+          <pre><code>sudo ln -sf /usr/bin/python3.12 /usr/bin/python3
+curl -fsSL https://ollama.com/install.sh | sh
+ollama run llama3:8b</code></pre>
+          
+          <p>The model download was approximately 5GB, and once it was ready, I tested it through the OpenWebUI interface.</p>
+
+          <ul>
+            <li><strong>Running OpenWebUI:</strong></li>
+          </ul>
+          
+          <p>To start OpenWebUI with Python 3.11, I used the following commands:</p>
+          
+          <pre><code>sudo ln -sf /usr/bin/python3.11 /usr/bin/python3
+source myenv/bin/activate
+open-webui serve</code></pre>
+          
+          <p>Once the server was running, I could access the AI interface through a browser at <strong>http://localhost:8080</strong>, where I could select the model and start interacting with the AI.</p>
+          
+          <img src="./assets/private_ai/choose the model.png" alt="Choose Model" >
+          <img src="./assets/private_ai/interface.png" alt="Interface" >
+          <img src="./assets/private_ai/chat.png" alt="Chat" >
+          
+          <span class="highlight">API Integration:</span>
+          One of the standout features of OpenWebUI is its connection tab, which allows easy integration of external APIs, such as Google Search or internal systems, for enhanced functionality.
+          
+          <img src="./assets/private_ai/connection.png" alt="Connection" >
+          
+          <span class="highlight">Challenges and Lessons Learned</span>
+          <ul>
+            <li><strong>Resource Management:</strong> Running models required significant computational resources, necessitating careful allocation of resources in the VM.</li>
+            <li><strong>User Adoption:</strong> Transitioning users from public AI platforms to a private instance required careful communication of the security benefits and addressing concerns about usability.</li>
+          </ul>
+
+          <span class="highlight">Conclusion</span>
+          Implementing a local private AI solution, like OpenWebUI with ai model, proved to be an effective approach for enhancing security and ensuring data privacy. Not only did it strengthen our internal security posture, but it also demonstrated the feasibility of using AI in a controlled and secure environment. I highly recommend exploring this approach to protect sensitive information while leveraging the power of AI.
+
+          <span class="highlight">Resources:</span>
+          <ul>
+            <li><strong>OpenWebUI:</strong> <a href="https://github.com/open-webui/open-webui" target="_blank">https://github.com/open-webui/open-webui</a></li>
+            <li><strong>Ollama for linux:</strong> <a href="https://ollama.com/download/linux" target="_blank">https://ollama.com/download/linux</a></li>
+            <li><strong>llama3:</strong> <a href="https://ollama.com/library/llama3" target="_blank">https://ollama.com/library/llama3</a></li>
+            <li><strong>Ubuntu:</strong> <a href="https://ubuntu.com/download/desktop" target="_blank">https://ubuntu.com/download/desktop</a></li>
+            <li><strong>VirtualBox:</strong> <a href="https://www.virtualbox.org/wiki/Downloads" target="_blank">https://www.virtualbox.org/wiki/Downloads</a></li>
+          </ul>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    window.addEventListener('load', function() {
+      setTimeout(function() {
+        document.getElementById('page-loader').classList.add('hidden');
+        document.getElementById('article-wrapper').classList.add('loaded');
+      }, 100);
+    });
+
+    window.addEventListener('scroll', function() {
+      const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      document.getElementById('reading-progress').style.width = scrolled + '%';
+    });
+  </script>
+</body>
+</html>
