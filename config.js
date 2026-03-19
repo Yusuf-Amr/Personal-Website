@@ -52,11 +52,6 @@ window.PorfolioConfig = {
       name: 'Private Local AI',
       link: 'articles/private_ai.html',
       description: 'I’ve often been concerned about the accidental leakage of sensitive information through AI tools...'
-    },  
-    {
-      name: 'SOC Analyst Beginner Roadmap - With Honest Tips and Advice',
-      link: 'articles/soc_analyst_beginner_roadmap.html',
-      description: 'Breaking into cybersecurity, specifically Security Operations Center (SOC) roles...'
     }
   ],
   contacts: {
